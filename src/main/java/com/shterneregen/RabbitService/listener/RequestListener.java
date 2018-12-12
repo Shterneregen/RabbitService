@@ -27,7 +27,7 @@ public class RequestListener {
         if (request != null) {
             Request oldRequest = requestRepository.getByRequestId(request.getRequestId());
             if (oldRequest != null) {
-                log.info("Request with requestId" + request.getRequestId() + "already registered!");
+                log.info("Request with requestId = " + request.getRequestId() + " already registered!");
                 return;
             }
 
