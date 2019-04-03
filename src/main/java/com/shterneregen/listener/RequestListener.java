@@ -1,15 +1,12 @@
-package com.shterneregen.RabbitService.listener;
+package com.shterneregen.listener;
 
-import com.shterneregen.RabbitService.models.Request;
-import com.shterneregen.RabbitService.repositories.RequestRepository;
+import com.shterneregen.models.Request;
+import com.shterneregen.repositories.RequestRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by Yuriy on 11.12.2018.
- */
 @Component
 public class RequestListener {
     private static final Logger log = LogManager.getLogger(RequestListener.class);
@@ -21,7 +18,7 @@ public class RequestListener {
         this.requestRepository = requestRepository;
     }
 
-    public void process(Request request) throws Exception {
+    public void process(Request request) throws InterruptedException {
         Thread.sleep(1000);
 
         if (request != null) {

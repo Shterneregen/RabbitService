@@ -1,6 +1,6 @@
-package com.shterneregen.RabbitService;
+package com.shterneregen;
 
-import com.shterneregen.RabbitService.listener.RequestListener;
+import com.shterneregen.listener.RequestListener;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -8,35 +8,31 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
-@SpringBootApplication
-public class RabbitServiceApplication {
+@Component
+public class RabbitConfig {
 
-    private final Environment env;
-
-    @Autowired
-    public RabbitServiceApplication(Environment env) {
-        this.env = env;
-    }
+    @Value("${message.queue}")
+    private String messageQueue;
+    @Value("${topic.name}")
+    private String topicName;
 
     @Bean
     Queue queue() {
-        return new Queue(env.getProperty("message.queue"), false);
+        return new Queue(messageQueue, false);
     }
 
     @Bean
     TopicExchange exchange() {
-        return new TopicExchange(env.getProperty("topic.name"));
+        return new TopicExchange(topicName);
     }
 
     @Bean
     Binding binding(Queue queue, TopicExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(env.getProperty("message.queue"));
+        return BindingBuilder.bind(queue).to(exchange).with(messageQueue);
     }
 
     @Bean
@@ -44,7 +40,7 @@ public class RabbitServiceApplication {
                                              MessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(env.getProperty("message.queue"));
+        container.setQueueNames(messageQueue);
         container.setMessageListener(listenerAdapter);
         return container;
     }
@@ -54,7 +50,4 @@ public class RabbitServiceApplication {
         return new MessageListenerAdapter(receiver, "process");
     }
 
-    public static void main(String[] args) {
-        SpringApplication.run(RabbitServiceApplication.class, args);
-    }
 }

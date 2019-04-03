@@ -1,12 +1,9 @@
-package com.shterneregen.RabbitService.services;
+package com.shterneregen.services;
 
-import com.shterneregen.RabbitService.models.Request;
+import com.shterneregen.models.Request;
 
 import java.util.List;
 
-/**
- * Created by Yuriy on 11.12.2018.
- */
 public interface RequestService {
 
     List<Request> listAll();

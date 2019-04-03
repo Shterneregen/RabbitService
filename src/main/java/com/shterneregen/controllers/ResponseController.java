@@ -1,12 +1,10 @@
-package com.shterneregen.RabbitService.controllers;
+package com.shterneregen.controllers;
 
-import com.shterneregen.RabbitService.models.ErrorNotification;
-import com.shterneregen.RabbitService.models.Request;
-import com.shterneregen.RabbitService.models.Response;
-import com.shterneregen.RabbitService.models.SupportRequest;
-import com.shterneregen.RabbitService.services.RequestService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.shterneregen.models.ErrorNotification;
+import com.shterneregen.models.Request;
+import com.shterneregen.models.Response;
+import com.shterneregen.models.SupportRequest;
+import com.shterneregen.services.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * Created by Yuriy on 11.12.2018.
- */
 @Controller
 public class ResponseController {
 

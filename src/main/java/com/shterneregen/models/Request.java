@@ -1,11 +1,11 @@
-package com.shterneregen.RabbitService.models;
+package com.shterneregen.models;
+
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by Yuriy on 11.12.2018.
- */
+@Data
 @Entity
 @Table(name = "REQUEST")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -22,13 +22,5 @@ public class Request implements Serializable {
 
     public Request(String requestId) {
         this.requestId = requestId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getRequestId() {
-        return requestId;
     }
 }

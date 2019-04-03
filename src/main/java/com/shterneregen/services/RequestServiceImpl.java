@@ -1,16 +1,13 @@
-package com.shterneregen.RabbitService.services;
+package com.shterneregen.services;
 
-import com.shterneregen.RabbitService.models.Request;
-import com.shterneregen.RabbitService.repositories.RequestRepository;
+import com.shterneregen.models.Request;
+import com.shterneregen.repositories.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Yuriy on 11.12.2018.
- */
 @Service
 public class RequestServiceImpl implements RequestService {
 
