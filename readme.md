@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/Shterneregen/rabbitmq-demo.svg?style=svg)](https://circleci.com/gh/Shterneregen/rabbitmq-demo)
+
 #### Small RabbitMQ example
 
 ###### To run the project:
