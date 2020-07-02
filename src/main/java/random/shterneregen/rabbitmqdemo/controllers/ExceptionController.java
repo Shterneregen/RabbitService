@@ -1,6 +1,5 @@
-package com.shterneregen.controllers;
+package random.shterneregen.rabbitmqdemo.controllers;
 
-import com.shterneregen.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
@@ -14,21 +13,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ExceptionController extends AbstractErrorController {
 
-    @Autowired
-    public ExceptionController(ErrorAttributes errorAttributes) {
-        super(errorAttributes);
-    }
+	@Autowired
+	public ExceptionController(ErrorAttributes errorAttributes) {
+		super(errorAttributes);
+	}
 
-    @RequestMapping(value = "/error", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseEntity<Object> handleError() {
-        return new ResponseEntity<>(
-                new Response(HttpStatus.INTERNAL_SERVER_ERROR, "Bad request"),
-                HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+	@ResponseBody
+	@RequestMapping(value = "${error.path}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> handleError() {
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 
-    @Override
-    public String getErrorPath() {
-        return "/error";
-    }
+	@Override
+	public String getErrorPath() {
+		return "/${error.path}";
+	}
 }

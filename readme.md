@@ -1,6 +1,6 @@
 #### Small RabbitMQ example
 
-###### To run project:
+###### To run the project:
 
 1. Install Docker
 2. docker run -d -p 5672:5672 --hostname my-rabbit --name some-rabbit rabbitmq:3
