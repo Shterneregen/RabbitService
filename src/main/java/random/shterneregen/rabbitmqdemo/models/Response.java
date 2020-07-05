@@ -1,16 +1,13 @@
 package random.shterneregen.rabbitmqdemo.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
+@AllArgsConstructor
 @Data
 public class Response {
 
 	private HttpStatus status;
 	private String message;
-
-	public Response(HttpStatus status, String message) {
-		this.status = status;
-		this.message = message;
-	}
 }
